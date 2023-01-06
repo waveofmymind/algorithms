@@ -1,29 +1,42 @@
+import heapq
 from heapq import heappush, heappop
 import sys
-input = sys.stdin.readline
-n, e = map(int, input().split())
-s = [[] for i in range(n + 1)]
-inf = sys.maxsize
-for i in range(e):
-    a, b, c = map(int, input().split())
-    s[a].append([b, c])
-    s[b].append([a, c])
-v1, v2 = map(int, input().split())
-def dijkstra(start):
-    dp = [inf for i in range(n + 1)]
-    dp[start] = 0
-    heap = []
-    heappush(heap, [0, start])
-    while heap:
-        w, c = heappop(heap)
-        for n_n, n_w in s[c]:
-            wei = n_w + w
-            if dp[n_n] > wei:
-                dp[n_n] = wei
-                heappush(heap, [wei, n_n])
-    return dp
-one = dijkstra(1)
-v1_ = dijkstra(v1)
-v2_ = dijkstra(v2)
-cnt = min(one[v1] + v1_[v2] + v2_[n], one[v2] + v2_[v1] + v1_[n])
-print(cnt if cnt < inf else -1)
+
+INF = 98765432109876543210
+n,m,k = map(int,sys.stdin.readline().split())
+graph = [[] for _ in range(n+1)]
+for _ in range(m):
+    a, b, c = map(int,sys.stdin.readline().split())
+    graph[a].append((b,c))
+    graph[b].append((a,c))
+
+distance = [[INF] * (k+1) for _ in range(n+1)]
+q = []
+for i in range(k+1):
+    distance[1][i] = 0
+heapq.heappush(q, (0, 1, 0))
+
+while q:
+    dist, now, p = heapq.heappop(q)
+    if distance[now][p] < dist:
+        continue
+    if p+1 <= k:
+        for (idx, x) in graph[now]:
+            if distance[idx][p+1] > dist:
+                distance[idx][p+1] = dist
+                heapq.heappush(q, (dist, idx, p+1))
+
+    for (idx, x) in graph[now]:
+        cost = x + dist
+        if distance[idx][p] > cost:
+            distance[idx][p] = cost
+            heappush(q,(cost,idx,p))
+
+ans = INF
+for i in range(k+1):
+    ans = min(ans, distance[n][i])
+print(ans)
+
+
+
+
