@@ -4,7 +4,7 @@
 
 - 다시 봐야할 문제, 풀이를 기억해놓고 싶은 문제는 [벨로그](https://velog.io/@waveofmymind)에 게시합니다.
 
-- [프로그래머스](https://prod.velog.io/@waveofmymind/series/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4)
+- [프로그래머스 문제](https://prod.velog.io/@waveofmymind/series/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4)
 
 
 - 🔎 💡 📍 ✍🏻✔️🏆
