@@ -1,47 +1,21 @@
-
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
 def solution(operations):
     com,num = [],[]
-    q = []
-    for i in operations:
-        a,b= i.split(" ")
-        if a == 'I':
-            q.append(int(b))
-            q.sort()
+    arr = []
+    for op in operations:
+        com,num= op.split(" ")
+        if com == 'I': #값을 큐에 넣고
+            arr.append(int(num))
+            arr.sort() #오름차순 정렬
         else:
-            if q:
-                if b == '-1':
-                    q.pop(0)
+            if arr:
+                if num == '-1':
+                    arr.pop(0) #최솟값 빼기
                 else:
-                    q.pop()
+                    arr.pop() #최댓값 빼기
             else:
-                continue
+                continue 
 
-    if q:
-        return [max(q),min(q)]
+    if arr:
+        return [max(arr),min(arr)]
     else:
         return [0,0]
